@@ -1,0 +1,35 @@
+version: '3'
+services:
+  ffmpeg:
+    restart: 'no'
+    container_name: ${DOCKER_PREFIX}ffmpeg
+    environment:
+      - RTSP_USER=$RTSP_USER
+      - RTSP_PASSWORD=$RTSP_PASSWORD
+      - RTSP_URL=$RTSP_URL
+    build: ./ffmpeg/
+    command: /docker-entrypoint.sh
+    volumes:
+      - ./ffmpeg/data:/data
+    networks:
+      - RTSPWeb
+  nginxffmpeg:
+    restart: unless-stopped
+    container_name: ${DOCKER_PREFIX}Nginx
+    build: ./nginx/
+    volumes:
+      - ./ffmpeg/data:/usr/share/nginx/html
+    ports:
+      - $NGINX_HTTP_PORT:80
+    networks: 
+      - RTSPWeb
+    depends_on:
+      - ffmpeg
+
+networks:
+  RTSPWeb:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: $DOCKER_NETWORK_ADDRESS

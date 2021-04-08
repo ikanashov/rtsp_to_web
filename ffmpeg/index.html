@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>ЧИПС УрГУПС Демонстрационный экзамен, по стандартам WordSkills</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style type="text/css"></style>
+</head>
+<body>
+  <div class="jumbotron">
+    <h1>ЧИПС УрГУПС<br>Демонстрационный экзамен,<br> по стандартам WordSkills</h1>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <video-js id="my_video" class="vjs-default-skin" controls preload="auto" width="640" height="480">
+        <source src="/index.m3u8" type="application/x-mpegURL">
+      </video-js>
+    </div>
+  </div>
+  
+  <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script src="https://unpkg.com/@videojs/http-streaming/dist/videojs-http-streaming.js"></script>
+  <script>
+    var player = videojs('my_video', {autoplay: 'any'});
+  </script>
+</body>
+</html>
